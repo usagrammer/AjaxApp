@@ -1,11 +1,17 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @post = Post.new
   end
 
   def create
-    post = Post.create(content: params[:content], checked: false)
-    render json: { post: post }
+    @post = Post.create(post_params)
+    render json: { post: @post }
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:content).merge(user_id: current_user.id)
   end
 
   def checked

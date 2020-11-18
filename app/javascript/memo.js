@@ -18,7 +18,7 @@ function ajax() {
     XHR.onload = () => {
       const item = XHR.response.post;
       const list = document.getElementById("list");
-      const formText = document.getElementById("content");
+      const formText = document.getElementById("post_content");
       const HTML = `
         <div class="post" data-id=${item.id}>
           <div class="post-date">

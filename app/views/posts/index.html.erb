@@ -1,12 +1,20 @@
 <h1>FirstAPP</h1>
-<%= form_with url: "#", method: :post,id: "form" do |form| %>
+
+<h2>
+  <%= current_user.nickname %>
+  さんのTODO
+</h2>
+
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %>
+
+<%= form_with model: @post, id: "form" do |form| %>
   <%= form.text_field :content %>
   <%= form.submit '投稿する' , id: "submit" %>
 <% end %>
 
 <div id="list">
 </div>
-<% @posts.each do |post| %>
+<% current_user.posts.each do |post| %>
   <div class="post" data-id = <%= post.id %> data-check=<%= post.checked %>>
     <div class="post-date">
       投稿日時：<%= post.created_at %>
